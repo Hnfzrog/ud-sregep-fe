@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <h4 class="modal-title">Form Kendaraan</h4>
+  <button type="button" class="close" aria-label="Close" (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nama">Nama Kendaraan</label>
+      <input id="nama" type="text" class="form-control" formControlName="nama_kendaraan" />
+      <div class="text-danger" *ngIf="form.get('nama_kendaraan')?.touched && form.get('nama_kendaraan')?.invalid">
+        Nama wajib diisi!
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="kapasitas">Kapasitas (kg)</label>
+      <input id="kapasitas" type="number" class="form-control" formControlName="kapasitas_kendaraan" />
+      <div class="text-danger" *ngIf="form.get('kapasitas_kendaraan')?.touched && form.get('kapasitas_kendaraan')?.invalid">
+        Kapasitas wajib dan harus lebih dari 0!
+      </div>
+    </div>
+
+    <div class="mt-3 d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Simpan</button>
+      <button type="button" class="btn btn-secondary ml-2" (click)="onClose()">Batal</button>
+    </div>
+  </form>
+</div>

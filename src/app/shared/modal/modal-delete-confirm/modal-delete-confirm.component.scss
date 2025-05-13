@@ -1,0 +1,23 @@
+.icon-wrapper {
+    background-color: #dc3545;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -40px;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.4);
+  }
+  
+  .modal-content {
+    border-radius: 1rem;
+    padding-top: 2.5rem; // space for floating icon
+  }
+  
+  .modal-header {
+    display: none; // remove top header
+  }
+  

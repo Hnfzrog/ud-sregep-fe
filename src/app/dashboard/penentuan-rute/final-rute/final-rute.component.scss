@@ -1,0 +1,22 @@
+.card {
+    border-radius: 16px;
+  }
+  
+  .card-header {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    font-size: 1rem;
+    padding: 1rem 1.25rem;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+    font-size: 0.95rem;
+  }
+  
+  @media (max-width: 768px) {
+    .card-body .row > div {
+      font-size: 0.9rem;
+    }
+  }
+  

@@ -1,0 +1,21 @@
+form {
+    .form-group {
+      margin-bottom: 1rem;
+    }
+  
+    label {
+      font-weight: 500;
+    }
+  
+    .btn-success {
+      background-color: #7ed6a6; // aksen hijau muda
+      border-color: #7ed6a6;
+      color: #fff;
+  
+      &:hover {
+        background-color: #65c491;
+        border-color: #65c491;
+      }
+    }
+  }
+  

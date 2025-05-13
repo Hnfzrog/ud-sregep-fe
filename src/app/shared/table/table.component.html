@@ -1,0 +1,103 @@
+<!-- Search Bar -->
+<div class="d-flex justify-content-end align-items-center mb-2">
+  <div class="search-bar input-group">
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Cari..."
+      [(ngModel)]="searchKeyword"
+      (keyup.enter)="triggerSearch()"
+    />
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" (click)="triggerSearch()">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Table -->
+<div class="table-container">
+  <table class="table custom-table">
+    <thead>
+      <tr>
+        <th *ngIf="checkboxColumn">
+          <input type="checkbox" [checked]="isAllSelected()" (change)="toggleSelectAll($event)" />
+        </th>
+        <th *ngFor="let column of columns">{{ column.name }}</th>
+        <th *ngIf="actionTitle && showActions">{{ actionTitle }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- No Data -->
+      <tr *ngIf="!paginatedRows || paginatedRows.length === 0">
+        <td [attr.colspan]="columns.length + (actionTitle && showActions ? 1 : 0) + (checkboxColumn ? 1 : 0)" class="text-center text-muted">
+          Tidak ada data tersedia
+        </td>
+      </tr>
+
+      <!-- Data Rows -->
+      <tr *ngFor="let row of paginatedRows; let i = index">
+        <td *ngIf="checkboxColumn">
+          <input type="checkbox" [checked]="isSelected(row)" (change)="toggleRowSelection(row)" />
+        </td>
+        <td *ngFor="let column of columns">
+          <ng-container [ngSwitch]="column.type">
+            <span *ngSwitchCase="'html'" [innerHTML]="row[column.prop]"></span>
+            <span *ngSwitchCase="'boolean'">
+              {{ row[column.prop] ? 'Aktif' : 'Nonaktif' }}
+            </span>
+            <span *ngSwitchDefault>
+              {{ column.prop === 'number' ? (i + 1 + (currentPage - 1) * rowsPerPage) : row[column.prop] }}
+            </span>
+          </ng-container>
+        </td>
+        <td *ngIf="actionTitle && showActions" class="text-center">
+          <button *ngIf="row.auth?.canConfirm" class="action-btn btn-confirm"
+                  (click)="confirmClicked.emit(row)" title="Confirm">
+            <i class="fa fa-check-circle"></i> Confirm
+          </button>
+          <button *ngIf="row.auth?.canUpdate" class="action-btn btn-edit"
+                  (click)="editClicked.emit(row)" title="Edit">
+            <i class="fa fa-edit"></i> Edit
+          </button>
+          <button *ngIf="row.auth?.canDelete" class="action-btn btn-delete"
+                  (click)="deleteClicked.emit(row)" title="Delete">
+            <i class="fa fa-trash"></i> Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Rows Per Page + Pagination -->
+<div *ngIf="filteredRows.length > 0" class="d-flex justify-content-between align-items-center mt-3">
+  <!-- Rows Per Page Selector -->
+  <div style="font-size: 12px;" *ngIf="filteredRows.length > minRowsPerPage">
+    <label class="me-2">Tampilkan</label>&nbsp;
+    <select class="form-select d-inline-block w-auto" [ngModel]="rowsPerPage" (ngModelChange)="onRowsPerPageChange($event)">
+      <option *ngFor="let option of rowsPerPageOptions" [value]="option">{{ option }}</option>
+    </select>&nbsp;
+    <span class="ms-2">baris per halaman</span>
+  </div>
+
+  <!-- Pagination -->
+  <nav *ngIf="filteredRows.length > rowsPerPage && totalPages > 1">
+    <ul class="pagination mb-0">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="goToPage(currentPage - 1)">Previous</a>
+      </li>
+
+      <li class="page-item"
+          *ngFor="let page of pages"
+          [class.active]="currentPage === page">
+        <a class="page-link" (click)="goToPage(page)">{{ page }}</a>
+      </li>
+
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="goToPage(currentPage + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>

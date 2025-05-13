@@ -1,0 +1,146 @@
+// === Warna Baru (lebih cerah dan harmonis) ===
+$bright-green: #f0f7f0; // Light green (navbar & sidebar)
+$sidebar-green: #edf8ee;
+$dark-green: #2e7d32; // Hijau tua
+$hover-green: #5eba63; // Hover ijo muda
+
+// === Navbar ===
+.navbar {
+  height: 72px;
+  background-color: $bright-green;
+  color: $dark-green;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+
+  .navbar-logo {
+    max-height: 110px;
+    width: auto;
+    margin-right: 1rem;
+  }
+
+  .navbar-brand {
+    color: $dark-green !important;
+    font-weight: bold;
+  }
+
+  .dropdown-toggle {
+    color: white;
+    cursor: pointer;
+  }
+
+  .dropdown-menu {
+    min-width: 160px;
+    background-color: white;
+    color: #333;
+  }
+
+  .btn-success {
+    background-color: $dark-green;
+    border-color: $dark-green;
+
+    &:hover {
+      background-color: darken($dark-green, 5%);
+    }
+  }
+}
+
+// === Sidebar ===
+.sidebar {
+  width: 250px;
+  min-width: 250px;
+  height: 100vh;
+  background-color: $sidebar-green;
+  color: $dark-green;
+  transition: width 0.3s ease, padding 0.3s ease;
+  overflow-y: auto;
+
+  .sidebar-logo-wrapper {
+    padding: 1rem 0;
+    background-color: transparent;
+  }
+
+  .sidebar-logo {
+    height: auto;
+    max-height: 120px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    color: $dark-green;
+
+    &:hover {
+      background-color: $dark-green;
+      color: white;
+    }
+
+    &.active {
+      background-color: $hover-green;
+      color: white;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+  }
+
+  // Submenu spacing
+  ul.nav.flex-column ul.nav.flex-column .nav-link {
+    padding-left: 2rem;
+  }
+
+  &.collapsed {
+    width: 0;
+    min-width: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+}
+
+// === Konten Utama ===
+.content-area {
+  max-height: 100vh;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease;
+  
+  /* Wells-style (Shadow + Rounded) */
+  background-color: white;   // Background putih agar kontras
+  border-radius: 10px;       // Membuat sudut lebih lembut
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  // Soft shadow effect for depth
+  padding: 1.5rem;           // Menambah ruang agar lebih lega
+  margin: 1rem;              // Memberikan jarak di sekitar konten
+}
+
+
+// === Footer ===
+.footer {
+  height: 56px;
+  background-color: #f1f8f4;
+  border-top: 1px solid #e0e0e0;
+  color: $dark-green;
+  font-size: 0.9rem;
+
+  i {
+    color: $dark-green;
+  }
+}
+
+// === Custom Button Outline Green ===
+.btn-outline-dark-green {
+  color: $dark-green;
+  border: 2px solid $dark-green;
+  background-color: transparent;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $dark-green;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(46, 125, 50, 0.3);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba(46, 125, 50, 0.25);
+  }
+}

@@ -1,0 +1,39 @@
+<div class="container d-flex align-items-center justify-content-center vh-100">
+  <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+    <h3 class="text-center text-success mb-4">Login</h3>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group mb-3">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isSubmitted && loginForm.controls['username'].invalid }"
+        />
+        <div class="invalid-feedback" *ngIf="isSubmitted && loginForm.controls['username'].invalid">
+          Username wajib diisi
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isSubmitted && loginForm.controls['password'].invalid }"
+        />
+        <div class="invalid-feedback" *ngIf="isSubmitted && loginForm.controls['password'].invalid">
+          Password wajib diisi
+        </div>
+      </div>
+
+      <div class="text-danger text-center mb-2" *ngIf="error">{{ error }}</div>
+
+      <button type="submit" class="btn btn-success btn-block w-100">Login</button>
+    </form>
+  </div>
+</div>

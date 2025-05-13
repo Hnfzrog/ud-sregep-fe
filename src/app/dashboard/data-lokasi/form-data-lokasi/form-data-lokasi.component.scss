@@ -1,0 +1,13 @@
+#map {
+    width: 100%;
+    z-index: 1;
+  
+    .leaflet-container {
+      border-radius: 0.5rem;
+    }
+  
+    .leaflet-control-geocoder-icon {
+      background-image: url('https://unpkg.com/leaflet-control-geocoder/dist/images/search-icon.png');
+    }
+  }
+  

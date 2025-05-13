@@ -1,0 +1,30 @@
+<ul class="nav nav-tabs tab-wrapper">
+    <li
+      class="nav-item"
+      *ngFor="let tab of tabs.toArray(); let i = index"
+      (click)="selectTab(i)"
+      [style.width.%]="100 / tabs.length"
+    >
+      <a
+        class="nav-link text-center"
+        [class.active]="i === activeTabIndex"
+        href="javascript:void(0)"
+      >
+        <i
+          *ngIf="tab.icon"
+          class="fa"
+          [ngClass]="tab.icon"
+          aria-hidden="true"
+          style="margin-right: 5px;"
+        ></i>
+        {{ tab.title }}
+      </a>
+    </li>
+  </ul>
+  
+  <div class="tab-content mt-3">
+    <ng-container *ngIf="tabs.toArray()[activeTabIndex] as activeTab">
+      <ng-container *ngTemplateOutlet="activeTab.content"></ng-container>
+    </ng-container>
+  </div>
+  

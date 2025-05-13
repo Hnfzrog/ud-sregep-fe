@@ -1,0 +1,48 @@
+.content-body {
+    .d-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+  
+    .input-group {
+      min-width: 200px;
+      max-width: 100%;
+    }
+  
+    @media (max-width: 768px) {
+      .d-flex {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+  
+      .input-group {
+        width: 100%;
+      }
+  
+      .content-body .btn {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+  
+      .btn-danger {
+        margin-top: 16px;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .d-flex {
+        gap: 12px;
+      }
+  
+      .input-group {
+        width: 100%;
+      }
+  
+      .btn-danger {
+        margin-top: 12px;
+      }
+    }
+  }
+  

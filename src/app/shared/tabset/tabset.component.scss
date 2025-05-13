@@ -1,0 +1,49 @@
+.nav-tabs.tab-wrapper {
+    display: flex;
+    border-bottom: none;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 0.25rem 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+  
+    .nav-item {
+      flex-shrink: 0;
+      
+      .nav-link {
+        width: 100%;
+        text-align: center;
+        border: none;
+        border-radius: 9999px; // pill-style
+        padding: 0.5rem 1rem;
+        background-color: transparent;
+        transition: all 0.2s ease-in-out;
+        font-weight: 500;
+        color: #495057;
+  
+        i {
+          margin-right: 6px;
+        }
+  
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.05);
+          color: #000;
+        }
+  
+        &.active {
+            background-color: #28a745; // hijau Bootstrap
+            color: white;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3); // hijau shadow
+          }          
+      }
+    }
+  }
+  
+  .tab-content {
+    padding: 1rem;
+    background-color: white;
+    border-radius: 12px;
+    margin-top: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  

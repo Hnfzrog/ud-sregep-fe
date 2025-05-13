@@ -1,0 +1,93 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand px-4 d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <button class="btn btn-outline-dark-green me-3 d-md-none" (click)="toggleSidebar()">
+        <i class="fa fa-bars"></i>
+      </button>
+  
+      <span class="navbar-brand mb-0 d-flex align-items-center">
+        <img class="navbar-logo" src="../../../assets/logo.png" alt="Logo">
+      </span>
+    </div>
+  
+    <div class="dropdown">
+      <button class="btn btn-success text-white dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-user-circle"></i> {{ username }}
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Wrapper -->
+  <div class="d-flex" style="height: calc(100vh - 72px - 56px); overflow: hidden;">
+    <!-- Sidebar -->
+    <div [class.d-none]="!sidebarVisible && isMobile" class="sidebar p-3">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a routerLink="landing-page" routerLinkActive="active" class="nav-link">
+            <i class="fa fa-home"></i> Home
+          </a>
+        </li>
+  
+        <!-- Menu Database -->
+        <li class="nav-item">
+          <a class="nav-link d-flex justify-content-between align-items-center"
+            (click)="databaseMenuOpen = !databaseMenuOpen" role="button">
+            <span><i class="fa fa-database"></i> Database</span>
+            <i class="fa" [ngClass]="{
+              'fa-chevron-down': !databaseMenuOpen,
+              'fa-chevron-up': databaseMenuOpen
+            }"></i>
+          </a>
+          <ul class="nav flex-column ms-3 mt-1" [hidden]="!databaseMenuOpen">
+            <li class="nav-item">
+              <a routerLink="data-pengguna" routerLinkActive="active" class="nav-link">
+                <i class="fa fa-users"></i> Data Pengguna
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="data-lokasi" routerLinkActive="active" class="nav-link">
+                <i class="fa fa-map-marker"></i> Data Lokasi
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="data-kendaraan" routerLinkActive="active" class="nav-link">
+                <i class="fa fa-truck"></i> Data Kendaraan
+              </a>
+            </li>
+          </ul>
+        </li>
+  
+        <li class="nav-item">
+          <a routerLink="penentuan-rute" routerLinkActive="active" class="nav-link">
+            <i class="fa fa-map"></i> Penentuan Rute
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="unduh-jadwal" routerLinkActive="active" class="nav-link">
+            <i class="fa fa-download"></i> Unduh Jadwal
+          </a>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Main Content -->
+    <div class="flex-grow-1 p-4 overflow-auto content-area">
+      <div class="bg-light p-2 mb-3 border rounded">
+        <strong>Dashboard</strong>
+        <ng-container *ngIf="breadcrumb"> / {{ breadcrumb }}</ng-container>
+      </div>
+  
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer class="footer text-center py-3 mt-auto">
+    <small class="text-muted">
+      Copyrights <i class="fa fa-copyright me-1"></i>2025 UD.REGEP
+    </small>
+  </footer>
+  

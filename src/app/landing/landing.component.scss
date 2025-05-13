@@ -1,0 +1,74 @@
+i {
+  padding-right: 5px;
+}
+$bright-green: #f0f7f0; // Light green (navbar)
+$sidebar-green: #ecffed; // Lighter green (sidebar)
+$dark-green: #2e7d32; // Hover color / hijau tua
+
+// === Navbar ===
+.navbar {
+  height: 72px;
+  background-color: $bright-green;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+
+  .navbar-logo {
+    max-height: 110px; // Updated: logo lebih besar
+    width: auto;
+    margin-right: 1rem;
+  }
+
+  .navbar-brand {
+    color: white !important;
+    font-weight: bold;
+  }
+
+  .dropdown-toggle {
+    color: white;
+    cursor: pointer;
+  }
+
+  .dropdown-menu {
+    min-width: 160px;
+    background-color: white;
+    color: #333;
+  }
+
+  .btn {
+    color: white;
+    border-color: white;
+  }
+}
+
+.hero-section {
+  min-height: calc(100vh - 72px - 56px);
+  background-color: #ffffff;
+  color: #2e7d32;
+
+  h1 {
+    color: #2e7d32;
+  }
+
+  p {
+    color: #4caf50;
+  }
+
+  img {
+    margin-top: 10px;
+    max-height: 200px;
+  }
+}
+
+.footer {
+  height: 56px;
+  background-color: #f1f8f4;
+  border-top: 1px solid #e0e0e0;
+  color: #388e3c;
+  font-size: 0.9rem;
+
+  i {
+    color: #66bb6a;
+  }
+}

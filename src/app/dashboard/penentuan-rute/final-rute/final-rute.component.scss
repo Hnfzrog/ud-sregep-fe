@@ -19,4 +19,10 @@
       font-size: 0.9rem;
     }
   }
+
+  .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
   

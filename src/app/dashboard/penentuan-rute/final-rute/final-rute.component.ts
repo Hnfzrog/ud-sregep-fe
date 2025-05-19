@@ -21,6 +21,8 @@ export class FinalRuteComponent implements OnInit {
   selectedDate: Date = new Date(); 
 
   bsConfig!: Partial<BsDatepickerConfig>;
+
+  isOptimasi: boolean = false;
   
   constructor(
     private route: Router,
@@ -47,43 +49,44 @@ export class FinalRuteComponent implements OnInit {
     return `${year}-${month}-${day}`;
   }
 
-  getCluster(page: any) {
+  getCluster(page: any, isOptimasi: boolean = this.isOptimasi) {
     this.page = page;
   
     const formattedDate = this.formatDateToYMD(this.selectedDate);
     let queryParams = this.querySvc.convert({
-      tanggal: formattedDate
+      tanggal: formattedDate,
+      optimize: isOptimasi
     });
   
-    this.dashboardSvc.getParam(DashboardServiceType.CLUSTERING_GENERATE_ROUTE, queryParams).subscribe((res) => {
-      const data = res['data'] || {};
-      const hasilRoutes = data['hasil_routes'] || [];
+    this.dashboardSvc.getParam(DashboardServiceType.CLUSTERING_GENERATE_ROUTE, queryParams)
+      .subscribe((res) => {
+        const data = res['data'] || {};
+        const hasilRoutes = data['hasil_routes'] || [];
+  
+        const formattedIndoDate = this.formatToIndonesianDate(data.tanggal);
 
-      // const formattedIndoDate = this.datePipe.transform(data.tanggal, 'dd MMMM yyyy', '', 'id-ID');
-      const formattedIndoDate = this.formatToIndonesianDate(data.tanggal)
-
-      // Format data biar bisa langsung dipake di template
-      this.rows = hasilRoutes.map((cluster: any) => ({
-      clusterId: cluster.cluster_id,
-      tanggal: formattedIndoDate, // 🎯 Udah Indo!
-      totalJarak: cluster.total_jarak_cluster_km,
-      totalWaktu: cluster.total_waktu_cluster,
-      kendaraan: cluster.routes[0]?.nama_kendaraan || '-',
-      routes: cluster.routes.map((r: any, index: number) => ({
-        no: index + 1,
-        nama_pengepul: r.nama_pengepul,
-        alamat: r.alamat,
-        total_waktu: r.total_waktu,
-        nilai_diangkut: r.nilai_diangkut + ' kg',
-        nilai_akhir: r.nilai_akhir + ' kg',
-        nilai_awal: r.nilai_awal + ' kg',
-      }))
-    }));
-
-    });
-  }  
-
-
+        this.isOptimasi = data.is_optimized
+  
+        this.rows = hasilRoutes.map((cluster: any) => ({
+          clusterId: cluster.cluster_id,
+          tanggal: formattedIndoDate,
+          totalJarak: cluster.total_jarak_cluster_km,
+          totalWaktu: cluster.total_waktu_cluster,
+          kendaraan: cluster.routes[0]?.nama_kendaraan || '-',
+          rute: cluster.rute,
+          routes: cluster.routes.map((r: any, index: number) => ({
+            no: index + 1,
+            nama_pengepul: r.nama_pengepul,
+            alamat: r.alamat,
+            total_waktu: r.total_waktu,
+            nilai_diangkut: r.nilai_diangkut + ' kg',
+            nilai_akhir: r.nilai_akhir + ' kg',
+            nilai_awal: r.nilai_awal + ' kg',
+          }))
+        }));
+      });
+  }
+  
   formatToIndonesianDate(date: string | Date): string {
     const dateObj = new Date(date); // ⬅️ Convert string ke Date
   
@@ -141,4 +144,11 @@ export class FinalRuteComponent implements OnInit {
       this.selectedDate = date;
       this.getCluster(this.page);
     }
+
+    onToggleOptimasi(event: any) {
+      this.isOptimasi = event
+      this.getCluster(this.page, this.isOptimasi);
+    }
+    
+    
 }

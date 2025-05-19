@@ -68,7 +68,9 @@ export class UnduhJadwalComponent implements OnInit {
       { name: 'Nama Pengepul', prop: 'nama_pengepul' },
       { name: 'Alamat', prop: 'alamat' },
       { name: 'Kendaraan', prop: 'nama_kendaraan' },
-      { name: 'Nilai ekspektasi bobot kertas', prop: 'nilai_ekspektasi' },
+      { name: 'Nilai ekspektasi bobot kertas', prop: 'nilai_ekspektasi_awal' },
+      { name: 'Bobot kertas diambil', prop: 'nilai_diangkut' },
+      { name: 'Sisa bobot kertas', prop: 'nilai_ekspektasi_akhir' },
     ];
   }
 
@@ -101,7 +103,9 @@ export class UnduhJadwalComponent implements OnInit {
         },
         id: item.id,
         koordinat: `${item.latitude}, ${item.longitude}`,
-        nilai_ekspektasi: `${item.nilai_ekspektasi_awal} kg`,
+        nilai_ekspektasi_awal: `${item.nilai_ekspektasi_awal} kg`,
+        nilai_ekspektasi_akhir: `${item.nilai_ekspektasi_akhir} kg`,
+        nilai_diangkut: `${item.nilai_diangkut} kg`,
         tanggal_cluster : this.formatToIndonesianDate(item.tanggal_cluster)
       }));
     });
@@ -165,7 +169,9 @@ export class UnduhJadwalComponent implements OnInit {
       'Nama Pengepul': item.nama_pengepul,
       Alamat: item.alamat,
       Kendaraan: item.nama_kendaraan,
-      'Nilai Ekspektasi (kg)': `${item.nilai_ekspektasi_awal} kg`
+      'Nilai Ekspektasi (kg)': `${item.nilai_ekspektasi_awal} kg`,
+      'Bobot kertas diambil (kg)': `${item.nilai_diangkut} kg`,
+      'Sisa bobot kertas (kg)': `${item.nilai_ekspektasi_akhir} kg`,
     }));
   
     const judul = 'Laporan pengambilan barang UD.SREGEP';

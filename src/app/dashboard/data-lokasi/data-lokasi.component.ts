@@ -118,7 +118,7 @@ export class DataLokasiComponent implements OnInit {
   public async onDeleteClicked(row: any) {
     const modal = this.modalSvc.show(ModalDeleteConfirmComponent);
     (<ModalDeleteConfirmComponent>modal.content).showConfirmationModal({
-      message: "Apakah Anda yakin ingin menghapus pengepul " + row.nama_pengepul + "?",
+      message: "Apakah Anda yakin ingin menghapus pengepul " + row.nama_pengepul + "?" + " data pada Penentuan Rute juga akan terhapus.",
     });
 
     const result = await new Promise<boolean>((resolve) => {
@@ -136,7 +136,7 @@ export class DataLokasiComponent implements OnInit {
     console.log(id);
     
     const params =id
-    this.dashboardSvc.deleteV2(DashboardServiceType.LOCATION, id).subscribe({
+    this.dashboardSvc.deleteV3(DashboardServiceType.LOCATION, id).subscribe({
       next: (res) => {
         this.toastr.success(res?.message, 'Sukses');
         this.getUserData(this.page)

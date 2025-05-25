@@ -217,7 +217,7 @@ export class DataKendaraanComponent implements OnInit {
       message:
         'Apakah Anda yakin ingin menghapus kendaraan ' +
         row.nama_kendaraan +
-        '?',
+        '?' + " data pada Penentuan Rute juga akan terhapus.",
     });
 
     const result = await new Promise<boolean>((resolve) => {

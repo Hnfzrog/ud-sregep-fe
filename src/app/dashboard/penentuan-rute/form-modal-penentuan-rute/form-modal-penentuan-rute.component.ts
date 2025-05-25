@@ -57,7 +57,7 @@ export class FormModalPenentuanRuteComponent implements OnInit {
       { name: 'Nama Pengepul', prop: 'nama_pengepul' },
       { name: 'Alamat', prop: 'alamat' },
       { name: 'Titik Koordinat', prop: 'koordinat' },
-      { name: 'Nilai Ekspektasi Pelanggan', prop: 'nilai_ekspektasi' },
+      { name: 'Nilai ekspektasi bobot kertas', prop: 'nilai_ekspektasi' },
       { name: 'Status pengambilan', prop: 'status_diambil' },
     ];
   }

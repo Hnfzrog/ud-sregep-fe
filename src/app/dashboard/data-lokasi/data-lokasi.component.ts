@@ -50,7 +50,7 @@ export class DataLokasiComponent implements OnInit {
         prop: 'koordinat'
       },
       {
-        name: 'Nilai Ekspektasi Pelanggan',
+        name: 'Nilai ekspektasi bobot kertas',
         prop: 'nilai_ekspektasi'
       },
       {

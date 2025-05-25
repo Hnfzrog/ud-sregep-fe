@@ -46,7 +46,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'moderator',
+    path: 'manajer',
     component: ModeratorComponent,
     children: [
       { path: '', redirectTo: 'landing-page', pathMatch: 'full' },

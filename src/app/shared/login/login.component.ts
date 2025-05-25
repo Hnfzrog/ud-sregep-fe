@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit {
 
         if (posisi === 'admin') {
           this.router.navigate(['/dashboard']);
-        } else if (posisi === 'moderator') {
-          this.router.navigate(['/moderator']);
+        } else if (posisi === 'manajer') {
+          this.router.navigate(['/manajer']);
         } else {
           this.error = 'Role tidak dikenali';
         }

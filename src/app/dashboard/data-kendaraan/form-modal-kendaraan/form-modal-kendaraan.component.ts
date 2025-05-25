@@ -59,6 +59,9 @@ export class FormModalKendaraanComponent implements OnInit {
         next: (res) => {
           this.toastr.success(res?.message, 'Sukses');
           this.bsModalRef.hide();
+          setTimeout(() => {
+            window.location.reload(); 
+          }, 1000); 
         },
         error: (err) => {
           const msg = err?.error?.detail || 'Gagal menyimpan data';
@@ -70,12 +73,16 @@ export class FormModalKendaraanComponent implements OnInit {
         next: (res) => {
           this.toastr.success(res?.message, 'Sukses');
           this.bsModalRef.hide();
+          
+          setTimeout(() => {
+            window.location.reload(); 
+          }, 1000); 
         },
         error: (err) => {
           const msg = err?.error?.detail || 'Gagal menyimpan data';
           this.toastr.error(msg);
         }
-      })
+      });      
     }
   }
 

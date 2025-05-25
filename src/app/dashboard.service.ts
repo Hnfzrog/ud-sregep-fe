@@ -25,7 +25,7 @@ export enum DashboardServiceType {
 })
 export class DashboardService {
 
-  private BASE_URL_API = 'https://ud-sregep-be-production.up.railway.app';
+  private BASE_URL_API = 'http://127.0.0.1:8000';
 
   constructor(private httpSvc: HttpClient) { }
 
@@ -48,7 +48,7 @@ export class DashboardService {
         return `${this.BASE_URL_API}/api/v1/locations/`;
 
       case DashboardServiceType.VEHICLES:
-        return `${this.BASE_URL_API}/api/v1/vehicles/`;
+        return `${this.BASE_URL_API}/api/v1/vehicles`;
 
       case DashboardServiceType.DAILY_PENGEPUL:
         return `${this.BASE_URL_API}/api/v1/pengepul/daily-pengepul`;
@@ -86,6 +86,11 @@ export class DashboardService {
   deleteV2(serviceType: DashboardServiceType, id?: number, params?: any): Observable<any> {
     const baseUrl = this.getUrl(serviceType); // Get the base URL
     const url = id !== undefined ? `${baseUrl}/${id}` : baseUrl; // Append the ID if provided
+    return this.httpSvc.delete(url, { params });
+  }
+  deleteV3(serviceType: DashboardServiceType, id?: number, params?: any): Observable<any> {
+    const baseUrl = this.getUrl(serviceType); // Get the base URL
+    const url = id !== undefined ? `${baseUrl}${id}` : baseUrl; // Append the ID if provided
     return this.httpSvc.delete(url, { params });
   }
   

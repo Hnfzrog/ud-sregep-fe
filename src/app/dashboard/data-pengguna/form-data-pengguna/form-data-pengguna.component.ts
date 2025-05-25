@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FormDataPenggunaComponent implements OnInit {
   form!: FormGroup;
-  positions = ['admin', 'moderator'];
+  positions = ['admin', 'manajer'];
   genders = ['Laki-laki', 'Perempuan'];
   bsConfig!: Partial<BsDatepickerConfig>;
   id: any;

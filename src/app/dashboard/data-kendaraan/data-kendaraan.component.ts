@@ -232,7 +232,7 @@ export class DataKendaraanComponent implements OnInit {
   }
 
   doDelete(id: any) {
-    this.dashboardSvc.deleteV2(DashboardServiceType.VEHICLES, id).subscribe({
+    this.dashboardSvc.deleteV3(DashboardServiceType.VEHICLES, id).subscribe({
       next: (res) => {
         this.toastr.success(res?.message, 'Sukses');
         this.getUserData(this.page);

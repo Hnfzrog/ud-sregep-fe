@@ -48,7 +48,7 @@ export class DashboardService {
         return `${this.BASE_URL_API}/api/v1/locations/`;
 
       case DashboardServiceType.VEHICLES:
-        return `${this.BASE_URL_API}/api/v1/vehicles`;
+        return `${this.BASE_URL_API}/api/v1/vehicles/`;
 
       case DashboardServiceType.DAILY_PENGEPUL:
         return `${this.BASE_URL_API}/api/v1/pengepul/daily-pengepul`;

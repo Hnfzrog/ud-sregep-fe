@@ -33,7 +33,7 @@ export class FormModalKendaraanComponent implements OnInit {
   }
 
   getVehicles(){
-    this.dashboardSvc.detail(DashboardServiceType.VEHICLES, `/${this.kendaraanData?.id}`).subscribe((res) => {
+    this.dashboardSvc.detail(DashboardServiceType.VEHICLES, `${this.kendaraanData?.id}`).subscribe((res) => {
       const data = res?.data
       
       this.form.patchValue({
@@ -55,7 +55,7 @@ export class FormModalKendaraanComponent implements OnInit {
     }
 
     if (this.kendaraanData) {
-      this.dashboardSvc.update(DashboardServiceType.VEHICLES,`/${this.kendaraanData?.id}`, formData).subscribe({
+      this.dashboardSvc.update(DashboardServiceType.VEHICLES,`${this.kendaraanData?.id}`, formData).subscribe({
         next: (res) => {
           this.toastr.success(res?.message, 'Sukses');
           this.bsModalRef.hide();

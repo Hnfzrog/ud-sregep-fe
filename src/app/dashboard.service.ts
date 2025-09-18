@@ -25,7 +25,7 @@ export enum DashboardServiceType {
 })
 export class DashboardService {
 
-  private BASE_URL_API = 'https://ud-sregep-be-production.up.railway.app';
+  private BASE_URL_API = 'http://127.0.0.1:8000';
 
   constructor(private httpSvc: HttpClient) { }
 
